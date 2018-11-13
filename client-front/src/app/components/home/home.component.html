@@ -1,0 +1,69 @@
+<div *ngIf="loggedIn">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col left">
+        <div class="card">
+          <h3 class="card-header text-center font-weight-bold py-4">Stock - last updated at: {{correctDate}}</h3>
+          <div class="card-body">
+            <div id="table" class="table-editable">
+              <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                  <th class="text-center">Company</th>
+                  <th class="text-center">Value</th>
+                  <th class="text-center">Avaible Amount</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+                <tr *ngFor="let stockMarketItem of stockMarketItems">
+                  <td>{{stockMarketItem.name}}</td>
+                  <td>{{stockMarketItem.price | currency : 'PLN ' : number:'1.4-4'}}</td>
+                  <td>{{stockMarketItem.amount}}</td>
+                  <td>
+                    <span class="table-remove"><button style="width:80px;" type="button" (click)="openDialogBuy(stockMarketItem.name, stockMarketItem.amount, stockMarketItem.unit, stockMarketItem.price, stockMarketItem)" class="btn btn-dark">Buy</button></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col right">
+        <div class="card">
+          <h3 class="card-header text-center font-weight-bold py-4">My Wallet</h3>
+          <div class="card-body">
+            <div id="table" class="table-editable">
+              <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                  <th class="text-center">Company</th>
+                  <th class="text-center">Unit Price</th>
+                  <th class="text-center">Amount</th>
+                  <th class="text-center">Value</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+                <tr *ngFor="let userStockItem of userStockItems">
+                  <td>{{userStockItem.name}}</td>
+                  <td>{{userStockItem.price}}</td>
+                  <td>{{userStockItem.amount}}</td>
+                  <td>{{userStockItem.amount*userStockItem.price | currency : 'PLN ' : number:'1.4-4'}}</td>
+                  <td>
+                    <span class="table-remove"><button style="width:80px;" type="button" (click)="openDialogSell(userStockItem.name, userStockItem.amount, userStockItem.price)" class="btn btn-dark">Sell</button></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <table class="table-responsive-md ">
+                <tr>
+                  <td>
+                    <h3>Avaible Money: {{wallet.balance | currency : 'PLN ' : number:'1.4-4'}}</h3></td>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!loggedIn">

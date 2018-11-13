@@ -1,0 +1,40 @@
+spring:
+  profiles: development
+
+  cloud:
+    stream:
+      bindings:
+        processUserPurchase:
+          destination: userPayment
+          binder: kafka
+          group: paymentProducer
+        processSaleRequest:
+          destination: userSale
+          binder: kafka
+          gorup: saleConsumer
+server:
+  port: 8082
+
+---
+
+spring:
+  profiles: production
+
+  cloud:
+    stream:
+      bindings:
+        processUserPurchase:
+          destination: userPayment
+          binder: kafka
+          group: paymentProducer
+        processSaleRequest:
+          destination: userSale
+          binder: kafka
+          gorup: saleConsumer
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: stock_db
+server:
+  port: 8082

@@ -1,0 +1,14 @@
+<ol>
+  <div class="container-fluid">
+    <div mat-dialog-content>
+      <p>Specify amount of shares you want to sell: </p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.sellAmount">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onOk()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data.sellAmount" cdkFocusInitial>Ok</button>
+    </div>
+  </div>
+</ol>

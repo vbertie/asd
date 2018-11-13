@@ -1,0 +1,14 @@
+<ol>
+  <div class="container-fluid">
+    <div mat-dialog-content>
+      <p>Specify amount of shares you want to buy: (only multiple of {{data.unit}})</p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.amount">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onOk()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data.amount" cdkFocusInitial>Ok</button>
+    </div>
+  </div>
+</ol>

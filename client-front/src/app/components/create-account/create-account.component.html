@@ -1,0 +1,120 @@
+<div class="container" style="margin-top:7%;">
+  <form (ngSubmit)="onSubmit()" autocomplete="nope">
+    <mat-tab-group (selectedIndexChange)="selectedChange($event)" [selectedIndex]="selectedTab">
+
+      <mat-tab label="Register">
+        <div class="form-group" style="width:50%; margin-left:25%; margin-top:2%;">
+          <label for="username">Username *</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="usernameNotNull" class="fa fa-close">Username can't be empty</i>
+              <i *ngIf="uniqueUsername" class="fa fa-close">Username already in use.</i>
+          </span>
+          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" autofocus="autofocus">
+          <p style="color:#828282;">Enter your username.</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Password *</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="passwordNotNull" class="fa fa-close">Password can't be empty</i>
+          </span>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" autofocus="autofocus">
+          <p style="color:#828282;">Enter your password*</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm password *</label>
+          <br>
+          <span class="text-danger align-middle">
+          </span>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="confirmedPassword" required="required" autofocus="autofocus">
+          <p style="color:#828282;">Confirm your password*</p>
+          <br />
+          <a style="float:right;background-color:#1b1818;" mat-raised-button class="mat-primary" (click)="goToPersonal()">Next</a>
+        </div>
+
+
+
+      </mat-tab>
+
+      <mat-tab label="Personal Data">
+        <div class="form-group" style="width:50%; margin-left:25%; margin-top:2%;">
+          <label for="username">First name *</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="firstNameNotNull" class="fa fa-close">First name can't be empty</i>
+                <i *ngIf="firstNameSize" class="fa fa-close">Maximum length is 40 chars.</i>
+          </span>
+          <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="userData.firstName" required="required" autofocus="autofocus">
+          <p style="color:#828282;">Enter your first name.</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Last Name *</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="lastNameNotNull" class="fa fa-close">Last name can't be empty</i>
+                  <i *ngIf="lastNameSize" class="fa fa-close">Maximum length is 40 chars.</i>
+          </span>
+          <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="userData.lastName" required="required" autofocus="autofocus">
+          <p style="color:#828282;">Enter your last name.</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Email *</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="emailNotNull" class="fa fa-close">Email can't be empty</i>
+              <i *ngIf="emailSize" class="fa fa-close">Maximum length is 40 chars.</i>
+              <i *ngIf="emailSyntax" class="fa fa-close">Use corect email syntax (e.g jan.kowalski@domain.com).</i>
+              <i *ngIf="uniqueEmail" class="fa fa-close">Email already in use.</i>
+          </span>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userData.email" required="required" autofocus="autofocus">
+          <p style="color:#828282;">Enter your email.</p>
+        </div>
+        <div class="form-group">
+          <label for="password">Phone number *</label>
+          <br>
+          <span class="text-danger align-middle">
+            <i *ngIf="phoneNotNull" class="fa fa-close">Phone number can't be empty</i>
+            <i *ngIf="phonePattern" class="fa fa-close">Please write correct phone number (9 digits)</i>
+          </span>
+          <input type="text" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="userData.phoneNumber" required="required" autofocus="autofocus">
+          <p style="color:#828282;">Enter your phone number.</p>
+
+          <a style="float:right;background-color:#1b1818;" mat-raised-button class="mat-primary" (click)="goToWallet()">Next</a>
+        </div>
+
+
+      </mat-tab>
+      <mat-tab label="Wallet">
+        <div class="form-group" style="width:50%; margin-left:25%; margin-top:2%;">
+          <label for="username">Starter wallet balance</label>
+          <br>
+          <span class="text-danger align-middle">
+              <i *ngIf="walletSize" class="fa fa-close">Maximum wallet balance is (1.000.000.000)</i>
+              <i *ngIf="walletPattern" class="fa fa-close">You can use only digits.</i>
+          </span>
+          <input type="text" class="form-control" id="balance" name="balance" [(ngModel)]="wallet.balance" autofocus="autofocus">
+          <p style="color:#828282;">Enter your's wallet balance.</p>
+        </div>
+        <div class="form-group">
+          <label for="username">Select stock items:</label><br />
+          <section class="example-section" *ngFor="let stockItem of stockItems">
+
+            <div class="form-check">
+
+              <label class="customcheck">
+                <input type="checkbox" [checked]="allChecked" (change)="addStockItemToUserList($event.target.checked, stockItem)">{{stockItem.name}} - {{stockItem.code}}
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </section>
+          <br />
+          <p style="color:#828282;">Choose some stock shares to begin your carieer! :)</p>
+
+          <button mat-raised-button type="submit" class="btn-block mat-primary" style="background-color:#1b1818;float:right; width:30%;">Register</button>
+        </div>
+
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+</div>
