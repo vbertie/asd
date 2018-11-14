@@ -1,11 +1,10 @@
 ﻿Process uruchomienia aplikacji:
 
-1. Wystartować aplikację  angulara (client-front), używając polecenia 'ng serve'. Jeżeli są jakieś erorry to 'npm update'.
+1. Wystartować aplikację  angulara - client-front (wersja 6.0.0+), używając polecenia 'ng serve'. 
+    Jeżeli są jakieś erorry to 'npm update'.
 2. Uruchomić skrypt kafki .sh/.bat w zależności od SO. Jeśli poleci shutdown, należy uruchomić ponownie.
 3. Wystartować moduły maven'owe: user oraz future-stock (mvn spring-boot:run), albo po prostu kliknąć run w IDE.
 4. Wyszukać aplikacji w przeglądarce (najprawdopodobniej localhost:4200)
 
 ps. Chciałem wrzucić aplikacje w chmure, ale mój dostawca VPS'a odmawia współpracy.
     Jeśli się uda to jeszcze dzisiaj dorzuce link.
-
-ps2. Jeśli coś nie chce działać jak powinno, to polecam pobrać gotowe repository z https://github.com/vbertie/fp
