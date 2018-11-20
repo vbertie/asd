@@ -42,24 +42,24 @@ public class UserFacade implements UserDetailsService {
 
     public UserDto findByUsername(String username) {
         return users.findOptionalByUsername(username)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public UserDto findById(Long id) {
         return users.findOptionalById(id)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public User findUserById(Long id) {
         return users.findById(id)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Transactional
     public void processPayment(PaymentDto paymentDto) {
 
         User user = users.findById(paymentDto.getUserId())
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         User processedUser = paymentManager.processPayment(user, paymentDto);
 
@@ -71,7 +71,7 @@ public class UserFacade implements UserDetailsService {
     public void processSale(SaleDto dto) {
 
         User user = users.findById(dto.getUserId())
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         User processedUser = saleManager.process(dto, user);
 
@@ -85,14 +85,14 @@ public class UserFacade implements UserDetailsService {
     public UserDto updateUser(PutUserDto dto) {
 
         User user = users.findById(dto.getId())
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         User updatedUser = converter.updateExisting(dto, user);
 
         users.save(updatedUser);
 
         return users.findOptionalById(updatedUser.getId())
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

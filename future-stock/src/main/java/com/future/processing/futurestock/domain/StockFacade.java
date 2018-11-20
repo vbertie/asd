@@ -41,7 +41,7 @@ public class StockFacade {
     public void processPurchase(PurchaseDto dto) {
 
         Stock stock = stockRepository.findByStockName("Future Stock")
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         Stock processedStock = purchaseManager.process(stock,dto);
 
@@ -55,7 +55,7 @@ public class StockFacade {
     public void processSale(SaleDto saleDto) {
 
         Stock stock = stockRepository.findByStockName(saleDto.getStockName())
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         Stock processedStock = saleManager.processSale(stock, saleDto);
 
@@ -64,11 +64,11 @@ public class StockFacade {
 
     public Stock findById(String id) {
         return stockRepository.findById(id)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public StockDto findOptionalByStockName(String stockName) {
         return stockRepository.findOptionalByStockName(stockName)
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

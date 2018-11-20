@@ -20,7 +20,6 @@ class SaleStream {
 
     @StreamListener(PROCESS_SALE_REQUEST)
     public void processPaymentRequest(SaleDto saleDto) {
-        log.info("JESTEM TU KURWO");
         stockFacade.processSale(saleDto);
     }
 }
