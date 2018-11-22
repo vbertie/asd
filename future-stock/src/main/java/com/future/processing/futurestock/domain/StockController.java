@@ -1,6 +1,5 @@
 package com.future.processing.futurestock.domain;
 
-import com.future.processing.futurestock.domain.StockFacade;
 import com.future.processing.futurestock.domain.dto.StockDto;
 import com.future.processing.futurestock.domain.dto.stream.PurchaseDto;
 

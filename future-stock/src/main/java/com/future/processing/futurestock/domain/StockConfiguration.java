@@ -8,6 +8,7 @@ import com.future.processing.futurestock.domain.stream.user.channel.UserChannel;
 
 import lombok.NoArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
