@@ -1,4 +1,4 @@
-# Stock market app
+# Stock market - app for recruitment
 
 # How to run it?
 
