@@ -48,4 +48,34 @@ spring:
 server:
   port: 8081
 
+---
+
+spring:
+  profiles: container
+  jpa:
+    database: MYSQL
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+  datasource:
+#    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+#    username: ${DATABASE_USER}
+#    password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://mysql:3306/test
+    username: root
+    password: root
+  cloud:
+    stream:
+      bindings:
+        paymentRequestChannel:
+          destination: userPayment
+          binder: kafka
+          group: paymentConsumer
+        processSale:
+          destination: userSale
+          binder: kafka
+          group: saleProducer
+
+server:
+  port: 8081
 
